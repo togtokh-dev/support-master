@@ -1,23 +1,10 @@
-# Axios Master
+# Support Master
 
 ## Example
 
 ```bash
-  import axiosMaster from "support-master";
-    async function name() {
-        try {
-            const result = await axiosMaster("SMS", false, {
-            method: "GET",
-            url: encodeURI(`https://api2.togtokh.dev/main/user/`),
-            headers: {
-                "Content-Type": "application/json",
-            },
-            });
-            console.log(result);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    name();
+    import SupportMaster from "support-master";
+    const paginateJson = await SupportMaster.paginate(page, limit, count);
+
 
 ```
