@@ -122,4 +122,18 @@ export const convert = async (
   };
   return data;
 };
-export default { paginate, level: { level_data, levelInfo, convert } };
+
+const containsOnlyNumbers = async (str: string) => {
+  const regex = /^[0-9]+$/;
+  return regex.test(str);
+};
+const containsOnlyString = async (str: string) => {
+  const regex = /^[a-zA-Z]+$/;
+  return regex.test(str);
+};
+export default {
+  paginate,
+  containsOnlyNumbers,
+  containsOnlyString,
+  level: { level_data, levelInfo, convert },
+};

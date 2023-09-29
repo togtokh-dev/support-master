@@ -38,6 +38,8 @@ declare const _default: {
         nextPage: number;
         prevPage: number;
     }>;
+    containsOnlyNumbers: (str: string) => Promise<boolean>;
+    containsOnlyString: (str: string) => Promise<boolean>;
     level: {
         level_data: {
             rank: number;

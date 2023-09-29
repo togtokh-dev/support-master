@@ -108,4 +108,17 @@ const convert = (el, currencyAmount, rank) => __awaiter(void 0, void 0, void 0, 
     return data;
 });
 exports.convert = convert;
-exports.default = { paginate, level: { level_data, levelInfo, convert: exports.convert } };
+const containsOnlyNumbers = (str) => __awaiter(void 0, void 0, void 0, function* () {
+    const regex = /^[0-9]+$/;
+    return regex.test(str);
+});
+const containsOnlyString = (str) => __awaiter(void 0, void 0, void 0, function* () {
+    const regex = /^[a-zA-Z]+$/;
+    return regex.test(str);
+});
+exports.default = {
+    paginate,
+    containsOnlyNumbers,
+    containsOnlyString,
+    level: { level_data, levelInfo, convert: exports.convert },
+};
