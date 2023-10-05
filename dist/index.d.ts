@@ -1,33 +1,3 @@
-export declare const convert: (el: {
-    amount: number;
-    profit: number;
-    profit_type: boolean;
-    bonus: number;
-}, currencyAmount: number, rank: {
-    rank: number;
-    point: number;
-    name: string;
-    user_exp: number;
-}) => Promise<{
-    main_amount: number;
-    real_amount: number;
-    bonus: {
-        amount: number;
-        profit: number;
-    };
-    bonus_rank: {
-        amount: number;
-        profit: number;
-        rank: {
-            rank: number;
-            point: number;
-            name: string;
-            user_exp: number;
-        };
-    };
-    amount: number;
-    profit: number;
-}>;
 declare const _default: {
     paginate: (page: number, limit: number, total: number) => Promise<{
         total: number;
@@ -82,6 +52,12 @@ declare const _default: {
             amount: number;
             profit: number;
         }>;
+    };
+    hash: {
+        Create: (password: string) => Promise<string>;
+        Verify: (entered_password: string, password: string) => Promise<boolean>;
+        hashCreate: (password: string, salt: string) => string;
+        hashVerify: (enteredPassword: string, storedHash: string, salt: string) => boolean;
     };
 };
 export default _default;

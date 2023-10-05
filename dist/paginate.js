@@ -9,21 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const level_1 = require("./level");
-const paginate_1 = require("./paginate");
-const hash_1 = require("./hash");
-const containsOnlyNumbers = (str) => __awaiter(void 0, void 0, void 0, function* () {
-    const regex = /^[0-9]+$/;
-    return regex.test(str);
+const paginate = (page, limit, total) => __awaiter(void 0, void 0, void 0, function* () {
+    const pageCount = Math.ceil(total / limit);
+    const start = (page - 1) * limit + 1;
+    const skip = (page - 1) * limit;
+    let end = start + limit - 1;
+    if (end > total)
+        end = total;
+    const Pagination = { total, pageCount, start, end, skip, nextPage: null, prevPage: null };
+    if (page < pageCount)
+        Pagination.nextPage = page + 1;
+    if (page > 1)
+        Pagination.prevPage = page - 1;
+    return Pagination;
 });
-const containsOnlyString = (str) => __awaiter(void 0, void 0, void 0, function* () {
-    const regex = /^[a-zA-Z]+$/;
-    return regex.test(str);
-});
-exports.default = {
-    paginate: paginate_1.default,
-    containsOnlyNumbers,
-    containsOnlyString,
-    level: level_1.default,
-    hash: hash_1.default,
-};
+exports.default = paginate;
