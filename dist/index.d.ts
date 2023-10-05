@@ -10,6 +10,12 @@ declare const _default: {
     }>;
     containsOnlyNumbers: (str: string) => Promise<boolean>;
     containsOnlyString: (str: string) => Promise<boolean>;
+    nationalIdChecker: (register: string) => Promise<{
+        year: number;
+        month: number;
+        day: number;
+        gander: string;
+    }>;
     level: {
         level_data: {
             rank: number;

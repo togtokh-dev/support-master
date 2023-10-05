@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.convert = void 0;
 const level_data = [
@@ -52,16 +43,19 @@ const level_data = [
         name: "Kage",
     },
 ];
-const levelInfo = (curPoints) => __awaiter(void 0, void 0, void 0, function* () {
+const levelInfo = async (curPoints) => {
     for (let index = 1; index <= 8; index++) {
         const nxtLvl = 5000 * (Math.pow(2, index) - 1);
         if (curPoints < nxtLvl) {
             const json = level_data[index - 1];
-            return Object.assign(Object.assign({}, json), { user_exp: curPoints });
+            return {
+                ...json,
+                user_exp: curPoints,
+            };
         }
     }
-});
-const convert = (el, currencyAmount, rank) => __awaiter(void 0, void 0, void 0, function* () {
+};
+const convert = async (el, currencyAmount, rank) => {
     const amount = el.amount;
     const converterdAmount = amount * currencyAmount;
     if (el === null || el === void 0 ? void 0 : el.profit_type) {
@@ -92,6 +86,6 @@ const convert = (el, currencyAmount, rank) => __awaiter(void 0, void 0, void 0, 
         profit: el.amount - converterdAmount,
     };
     return data;
-});
+};
 exports.convert = convert;
 exports.default = { level_data, levelInfo, convert: exports.convert };
