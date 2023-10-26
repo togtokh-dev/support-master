@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const level_1 = require("./level");
 const paginate_1 = require("./paginate");
 const hash_1 = require("./hash");
+const query_parameters_1 = require("./query-parameters");
 const containsOnlyNumbers = async (str) => {
     const regex = /^[0-9]+$/;
     return regex.test(str);
@@ -30,6 +31,7 @@ exports.default = {
     containsOnlyNumbers,
     containsOnlyString,
     nationalIdChecker,
+    query_parameters: query_parameters_1.default,
     level: level_1.default,
     hash: hash_1.default,
 };

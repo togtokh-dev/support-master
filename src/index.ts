@@ -1,6 +1,7 @@
 import level from "./level";
 import paginate from "./paginate";
 import hash from "./hash";
+import query_parameters from "./query-parameters";
 const containsOnlyNumbers = async (str: string) => {
   const regex = /^[0-9]+$/;
   return regex.test(str);
@@ -28,6 +29,7 @@ export default {
   containsOnlyNumbers,
   containsOnlyString,
   nationalIdChecker,
+  query_parameters,
   level,
   hash,
 };
