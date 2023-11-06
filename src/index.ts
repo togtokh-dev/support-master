@@ -24,6 +24,12 @@ const nationalIdChecker = async (register: string) => {
     Number.parseInt(register.slice(8, 9)) % 2 == 1 ? "men" : "women";
   return { year, month, day, gander };
 };
+async function delayLoop(iterations: number, delay: number) {
+  for (let i = 0; i < iterations; i++) {
+    console.log(`Iteration ${i + 1}`);
+    await new Promise((resolve) => setTimeout(resolve, delay));
+  }
+}
 export default {
   paginate,
   containsOnlyNumbers,
@@ -32,4 +38,5 @@ export default {
   query_parameters,
   level,
   hash,
+  delayLoop,
 };

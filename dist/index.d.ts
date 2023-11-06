@@ -1,3 +1,4 @@
+declare function delayLoop(iterations: number, delay: number): Promise<void>;
 declare const _default: {
     paginate: (page: number, limit: number, total: number) => Promise<{
         total: number;
@@ -68,5 +69,6 @@ declare const _default: {
         hashCreate: (password: string, salt: string) => string;
         hashVerify: (enteredPassword: string, storedHash: string, salt: string) => boolean;
     };
+    delayLoop: typeof delayLoop;
 };
 export default _default;
