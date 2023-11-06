@@ -76,9 +76,9 @@ export const convert = async (
   }
   const main_amount = Math.round(el.amount);
 
-  const bonus_rank = Math.round(
-    (((converterdAmount / 100) * el?.profit) / 100) * rank.rank
-  );
+  const bonus_rank = el?.profit_type
+    ? Math.round((((converterdAmount / 100) * el?.profit) / 100) * rank.rank)
+    : Math.round((el?.profit / 100) * rank.rank);
 
   const bonus = (main_amount / 100) * el.bonus;
   const after_bonus = main_amount - bonus;
