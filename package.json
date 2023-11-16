@@ -1,44 +1,44 @@
 {
-  "name": "support-master",
-  "version": "0.0.8",
-  "description": "support togtokh",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist/"
-  ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build-ts": "npx tsc",
-    "build": "npx tsc",
-    "debug": "npm run build && npm run watch-debug",
-    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/togtokh-dev/support-master.git"
-  },
-  "keywords": [
-    "TOGTOKH",
-    "axios",
-    "3rd log",
-    "axios-log",
-    "response time log"
-  ],
-  "author": "TOGTOKH.DEV",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/togtokh-dev/support-master/issues"
-  },
-  "homepage": "https://github.com/togtokh-dev/support-master#readme",
-  "dependencies": {
-    "crypto": "^1.0.1",
-    "typescript": "^5.0.4"
-  },
-  "devDependencies": {
-    "@types/node": "^18.15.11",
-    "@typescript-eslint/eslint-plugin": "^6.4.0",
-    "@typescript-eslint/parser": "^6.4.0",
-    "eslint": "^8.47.0"
-  }
+    "name": "support-master",
+    "version": "0.0.9",
+    "description": "support togtokh",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist/"
+    ],
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build-ts": "npx tsc",
+        "build": "npx tsc",
+        "debug": "npm run build && npm run watch-debug",
+        "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/togtokh-dev/support-master.git"
+    },
+    "keywords": [
+        "TOGTOKH",
+        "axios",
+        "3rd log",
+        "axios-log",
+        "response time log"
+    ],
+    "author": "TOGTOKH.DEV",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/togtokh-dev/support-master/issues"
+    },
+    "homepage": "https://github.com/togtokh-dev/support-master#readme",
+    "dependencies": {
+        "crypto": "^1.0.1",
+        "typescript": "^5.0.4"
+    },
+    "devDependencies": {
+        "@types/node": "^18.15.11",
+        "@typescript-eslint/eslint-plugin": "^6.4.0",
+        "@typescript-eslint/parser": "^6.4.0",
+        "eslint": "^8.47.0"
+    }
 }
