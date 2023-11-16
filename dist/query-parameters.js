@@ -8,7 +8,10 @@ const query_parameters = (mini_app_id, data, version, short) => {
     const app_link = `https://link.toki.mn/?link=https://toki.mn/MINI_PROGRAM/${mini_app_id}/?this_param_text&apn=com.toki.mn&isi=1504679492&ibi=com.toki.mn&efr=1`;
     let query_text = "queryPath%3D";
     for (var i in data) {
-        const text = ((_a = data[i]) === null || _a === void 0 ? void 0 : _a.replace(" ", "+")) || data[i];
+        let text = data[i];
+        if (typeof data[i] == "string") {
+            text = ((_a = data[i]) === null || _a === void 0 ? void 0 : _a.replace(" ", "+")) || data[i];
+        }
         query_text = query_text + `%26${i}%3D${text}`;
     }
     const result = app_link.replace("this_param_text", query_text);
