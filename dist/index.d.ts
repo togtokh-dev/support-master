@@ -70,5 +70,8 @@ declare const _default: {
         hashVerify: (enteredPassword: string, storedHash: string, salt: string) => boolean;
     };
     delayLoop: typeof delayLoop;
+    convert: {
+        convertCyrillicToLatin: (cyrillicText: string) => string;
+    };
 };
 export default _default;
