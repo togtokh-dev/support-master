@@ -58,16 +58,16 @@ const levelInfo = async (curPoints) => {
 const convert = async (el, currencyAmount, rank) => {
     const amount = el.amount;
     const converterdAmount = amount * currencyAmount;
-    if (el === null || el === void 0 ? void 0 : el.profit_type) {
-        el.amount = converterdAmount + (converterdAmount / 100) * (el === null || el === void 0 ? void 0 : el.profit);
+    if (el?.profit_type) {
+        el.amount = converterdAmount + (converterdAmount / 100) * el?.profit;
     }
     else {
-        el.amount = converterdAmount + (el === null || el === void 0 ? void 0 : el.profit);
+        el.amount = converterdAmount + el?.profit;
     }
     const main_amount = Math.round(el.amount);
-    const bonus_rank = (el === null || el === void 0 ? void 0 : el.profit_type)
-        ? Math.round((((converterdAmount / 100) * (el === null || el === void 0 ? void 0 : el.profit)) / 100) * rank.rank)
-        : Math.round(((el === null || el === void 0 ? void 0 : el.profit) / 100) * rank.rank);
+    const bonus_rank = el?.profit_type
+        ? Math.round((((converterdAmount / 100) * el?.profit) / 100) * rank.rank)
+        : Math.round((el?.profit / 100) * rank.rank);
     const bonus = (main_amount / 100) * el.bonus;
     const after_bonus = main_amount - bonus;
     const after_rank_bonus = after_bonus - bonus_rank;

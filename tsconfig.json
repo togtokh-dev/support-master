@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
     "module": "CommonJS",
-    "target": "ES2018",
+    "target": "es2022",
     "sourceMap": false,
     "outDir": "./dist",
     "noImplicitAny": true,
-    "declaration": true
+    "declaration": true,
+    "lib": [
+      "es2022"
+    ]
   },
   "include": [
     "src/**/*"

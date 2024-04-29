@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const query_parameters = (mini_app_id, data, version, short) => {
-    var _a;
     // data =  { newUser: "true", user_name: "togtokh", id: "2131" }
     // query_parameters('MINI_PROGRAM Obj id',  data)
     data = { use_query: true, ...data };
@@ -10,8 +9,9 @@ const query_parameters = (mini_app_id, data, version, short) => {
     for (var i in data) {
         let text = data[i];
         if (typeof data[i] == "string") {
-            text = ((_a = data[i]) === null || _a === void 0 ? void 0 : _a.replace(" ", "+")) || data[i];
+            text = data[i]?.replace(new RegExp(" ", "g"), "+") || data[i];
         }
+        //  text = encodeURI(text);
         query_text = query_text + `%26${i}%3D${text}`;
     }
     const result = app_link.replace("this_param_text", query_text);

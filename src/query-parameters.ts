@@ -12,8 +12,9 @@ const query_parameters = (
   for (var i in data) {
     let text = data[i];
     if (typeof data[i] == "string") {
-      text = data[i]?.replace(" ", "+") || data[i];
+      text = data[i]?.replace(new RegExp(" ", "g"), "+") || data[i];
     }
+    //  text = encodeURI(text);
     query_text = query_text + `%26${i}%3D${text}`;
   }
   const result = app_link.replace("this_param_text", query_text);
