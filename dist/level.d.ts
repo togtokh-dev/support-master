@@ -11,11 +11,11 @@ export declare const convert: (el: {
 }) => Promise<{
     main_amount: number;
     real_amount: number;
-    bonus: {
+    discount: {
         amount: number;
         profit: number;
     };
-    bonus_rank: {
+    discount_rank: {
         amount: number;
         profit: number;
         rank: {
@@ -53,11 +53,11 @@ declare const _default: {
     }) => Promise<{
         main_amount: number;
         real_amount: number;
-        bonus: {
+        discount: {
             amount: number;
             profit: number;
         };
-        bonus_rank: {
+        discount_rank: {
             amount: number;
             profit: number;
             rank: {

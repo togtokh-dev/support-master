@@ -75,11 +75,11 @@ const convert = async (el, currencyAmount, rank) => {
     const data = {
         main_amount,
         real_amount: converterdAmount,
-        bonus: {
+        discount: {
             amount: Math.round(bonus),
             profit: el.bonus,
         },
-        bonus_rank: {
+        discount_rank: {
             amount: Math.round(bonus_rank),
             profit: rank.rank,
             rank,
