@@ -44,10 +44,19 @@ const level_data = [
     },
 ];
 const levelInfo = async (curPoints) => {
+    console.log(curPoints);
     for (let index = 1; index <= 8; index++) {
         const nxtLvl = 5000 * (Math.pow(2, index) - 1);
         if (curPoints < nxtLvl) {
             const json = level_data[index - 1];
+            return {
+                ...json,
+                user_exp: curPoints,
+            };
+        }
+        //max exp
+        if (index == 8) {
+            const json = level_data[7];
             return {
                 ...json,
                 user_exp: curPoints,
