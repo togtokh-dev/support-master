@@ -31,10 +31,7 @@ export declare const level_data: readonly [{
     readonly point: 1275000;
     readonly name: "Kage";
 }];
-/**
- * Одоогийн оноогоор (curPoints) түвшинг тодорхойлох
- * nxtLvl = 5000 * (2^index - 1) — level_data дахь point-уудтай таарна.
- */
+/** Одоогийн оноогоор түвшин тодорхойлох */
 export declare const levelInfo: (curPoints: number) => Promise<{
     user_exp: number;
     rank: 1;
@@ -110,9 +107,11 @@ export type ConvertResult = {
     };
     converted_amount: number;
     profit_amount: number;
+    amount: number;
     subtotal_after_discounts_on_base: number;
     subtotal_after_profit_before_rank: number;
     discount: {
+        amount: number;
         default: {
             amount: number;
             percent: number;
@@ -131,7 +130,7 @@ export type ConvertResult = {
     margin_over_converted: number;
 };
 /**
- * Дараалал:
+ * Дараалал (таны зааснаар):
  * 1) converted_amount = base_amount * fx
  * 2) default (bonus%) = converted_amount * (bonus/100)         ← ҮНДСЭН ДҮН-ээс
  * 3) voucher:

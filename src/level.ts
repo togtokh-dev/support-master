@@ -10,10 +10,7 @@ export const level_data = [
   { rank: 8, point: 1_275_000, name: "Kage" },
 ] as const;
 
-/**
- * Одоогийн оноогоор (curPoints) түвшинг тодорхойлох
- * nxtLvl = 5000 * (2^index - 1) — level_data дахь point-уудтай таарна.
- */
+/** Одоогийн оноогоор түвшин тодорхойлох */
 export const levelInfo = async (curPoints: number) => {
   for (let index = 1; index <= 8; index++) {
     const nextLevelThreshold = 5000 * (Math.pow(2, index) - 1);
@@ -68,25 +65,24 @@ export type ConvertResult = {
   // --- Завсрын дүнгүүд ---
   converted_amount: number; // хөрвүүлсний дараах суурь дүн
   profit_amount: number; // ашиг (мөнгөн дүн)
+  amount: number; // ҮНДСЭН ДҮН + ашиг (анхны нийт дүн)
   subtotal_after_discounts_on_base: number; // ҮНДСЭН ДҮН - bonus - voucher
   subtotal_after_profit_before_rank: number; // дээр нь profit нэмсэний дараах дүн
 
   // --- Хөнгөлөлтүүдийг бүлэглэсэн ---
   discount: {
+    amount: number; // нийт хөнгөлсөн дүн (default + voucher + rank)
     default: {
-      // Ерөнхий бонус — ҮНДСЭН ДҮН-с шууд
-      amount: number;
+      amount: number; // Ерөнхий бонус — ҮНДСЭН ДҮН-с шууд
       percent: number;
     };
     voucher: {
-      // Ваучер — ҮНДСЭН ДҮН дээр
-      amount: number;
+      amount: number; // Ваучер — ҮНДСЭН ДҮН дээр
       type: "percentage" | "fixed" | null;
       value: number;
     };
     rank: {
-      // Rank — ЗӨВХӨН АШГИЙН ДҮНГЭЭС
-      amount: number;
+      amount: number; // Rank — ЗӨВХӨН АШГИЙН ДҮНГЭЭС
       rank: RankInfo;
     };
   };
@@ -104,7 +100,7 @@ const clampMin = (n: number, min = 0) => (n < min ? min : n);
 
 // ---------- ГОЛ ТООЦОО ----------
 /**
- * Дараалал:
+ * Дараалал (таны зааснаар):
  * 1) converted_amount = base_amount * fx
  * 2) default (bonus%) = converted_amount * (bonus/100)         ← ҮНДСЭН ДҮН-ээс
  * 3) voucher:
@@ -163,6 +159,9 @@ export const convert = async ({
   const profit_amount =
     profit_type === "percentage" ? converted_amount * (profit / 100) : profit;
 
+  // ҮНДСЭН ДҮН + ашиг (анхны нийт дүн) — таны хүссэн шинэ утга
+  const amount = converted_amount + profit_amount;
+
   const subtotal_after_profit_before_rank =
     subtotal_after_discounts_on_base + profit_amount;
 
@@ -175,6 +174,12 @@ export const convert = async ({
     clampMin(subtotal_after_profit_before_rank - rank_discount_amount),
   );
   const margin_over_converted = final_payable - converted_amount;
+
+  // Нийт хөнгөлөлтийн нийлбэр (default + voucher + rank)
+  const total_discount_amount =
+    Math.round(default_discount_amount) +
+    Math.round(voucher_amount) +
+    Math.round(rank_discount_amount);
 
   // 7) Буцаах — бүлэглэсэн discount объекттой
   return {
@@ -190,6 +195,8 @@ export const convert = async ({
 
     converted_amount,
     profit_amount,
+    amount, // ҮНДСЭН ДҮН + ашиг
+
     subtotal_after_discounts_on_base: Math.round(
       subtotal_after_discounts_on_base,
     ),
@@ -198,6 +205,7 @@ export const convert = async ({
     ),
 
     discount: {
+      amount: total_discount_amount,
       default: {
         amount: Math.round(default_discount_amount),
         percent: bonus_percent,
