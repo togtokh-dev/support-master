@@ -20,12 +20,19 @@ const run = async () => {
     name: "Chūnin",
     user_exp: 20_000,
   };
+  const uui_tda: any = {
+    el: { amount: 35833, profit: 5, profit_type: "percentage", bonus: 0 },
+    voucher_discount: { discount_value: 5000, discount_type: "fixed" },
+    currencyAmount: 1,
+    rank: { rank: 1, point: 5000, name: "Hitomi", user_exp: 0 },
+  };
   const result4 = await supportMaster.level.convert({
     el: { amount: 50000, profit: 5, profit_type: "percentage", bonus: 10 }, // 10 USD, 10% бонус
     voucher_discount: { discount_value: 1000, discount_type: "fixed" },
     currencyAmount: 1,
     rank,
   });
+
   console.log("Convert Example 4 (no profit, only discounts):", result4);
 };
 

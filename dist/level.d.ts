@@ -108,8 +108,6 @@ export type ConvertResult = {
     converted_amount: number;
     profit_amount: number;
     amount: number;
-    subtotal_after_discounts_on_base: number;
-    subtotal_after_profit_before_rank: number;
     discount: {
         amount: number;
         default: {
@@ -130,20 +128,20 @@ export type ConvertResult = {
     margin_over_converted: number;
 };
 /**
- * Дараалал (таны зааснаар):
+ * Дараалал:
  * 1) converted_amount = base_amount * fx
- * 2) default (bonus%) = converted_amount * (bonus/100)         ← ҮНДСЭН ДҮН-ээс
+ * 2) default (bonus%) = converted_amount * (bonus/100)         ← ҮНДСЭН ДҮН-с
  * 3) voucher:
  *    - percentage → converted_amount * (value/100)             ← ҮНДСЭН ДҮН дээр
  *    - fixed      → value
  *    subtotal_after_discounts_on_base = converted_amount - bonus - voucher
  * 4) profit:
- *    - percentage → converted_amount * (profit/100)            ← ҮНДСЭН ДҮН-ээс
+ *    - percentage → converted_amount * (profit/100)            ← ҮНДСЭН ДҮН-с
  *    - fixed      → profit
- *    subtotal_after_profit_before_rank = subtotal_after_discounts_on_base + profit_amount
+ *    subtotal_with_profit = subtotal_after_discounts_on_base + profit_amount
  * 5) rank discount: ЗӨВХӨН АШГИЙН ДҮНГЭЭС
  *    rank_discount = round( (profit_amount * 1%) * rank.rank )
- * 6) final = subtotal_after_profit_before_rank - rank_discount
+ * 6) final = subtotal_with_profit - rank_discount
  */
 export declare const convert: ({ el, voucher_discount, currencyAmount, rank, }: ConvertArgs) => Promise<ConvertResult>;
 declare const _default: {
