@@ -1,7 +1,7 @@
 {
   "name": "support-master",
   "version": "0.1.8",
-  "description": "support togtokh",
+  "description": "TypeScript utility helpers: pagination, PBKDF2 password hashing, string validation, Mongolian national-ID parsing, Cyrillic-to-Latin transliteration, leveling and pricing.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -32,7 +32,6 @@
   },
   "homepage": "https://github.com/togtokh-dev/support-master#readme",
   "dependencies": {
-    "crypto": "^1.0.1",
     "typescript": "^5.0.4"
   },
   "devDependencies": {
