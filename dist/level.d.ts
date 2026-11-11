@@ -132,7 +132,7 @@ export type ConvertResult = {
  * 1) converted_amount = base_amount * fx
  * 2) default (bonus%) = converted_amount * (bonus/100)         ← ҮНДСЭН ДҮН-с
  * 3) voucher:
- *    - percentage → converted_amount * (value/100)             ← ҮНДСЭН ДҮН дээр
+ *    - percentage → amount * (min(value,100)/100)               ← НИЙТ ДҮН (суурь+ашиг) дээр
  *    - fixed      → value
  *    subtotal_after_discounts_on_base = converted_amount - bonus - voucher
  * 4) profit:

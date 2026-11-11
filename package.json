@@ -1,6 +1,6 @@
 {
   "name": "support-master",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "TypeScript utility helpers: pagination, PBKDF2 password hashing, string validation, Mongolian national-ID parsing, Cyrillic-to-Latin transliteration, leveling and pricing.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

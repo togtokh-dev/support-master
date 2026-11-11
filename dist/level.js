@@ -34,7 +34,7 @@ const clampMin = (n, min = 0) => (n < min ? min : n);
  * 1) converted_amount = base_amount * fx
  * 2) default (bonus%) = converted_amount * (bonus/100)         ← ҮНДСЭН ДҮН-с
  * 3) voucher:
- *    - percentage → converted_amount * (value/100)             ← ҮНДСЭН ДҮН дээр
+ *    - percentage → amount * (min(value,100)/100)               ← НИЙТ ДҮН (суурь+ашиг) дээр
  *    - fixed      → value
  *    subtotal_after_discounts_on_base = converted_amount - bonus - voucher
  * 4) profit:
@@ -62,7 +62,9 @@ const convert = async ({ el, voucher_discount, currencyAmount, rank, }) => {
     const default_discount_amount = converted_amount * (bonus_percent / 100);
     // 4) Ашгийг нэмээд (profit) дараа нь rank discount-ыг ЗӨВХӨН ашгаас хасна
     const rank_discount_amount = profit_amount > 0 ? Math.round((profit_amount / 10) * rank.rank) : 0;
-    // 5) Ваучер — ҮНДСЭН ДҮН дээр
+    // 5) Ваучер — НИЙТ ДҮН (суурь + ашиг) дээр. Өмнө нь зөвхөн суурь дүн дээр
+    //    тооцдог байсан тул 100% voucher-тэй ч ашгийн хэсэг төлөгддөг байв.
+    //    Хувь нь 0..100 хооронд хавчигдана (100% = үнэгүй).
     let voucher_amount = 0;
     let voucher_type = null;
     let voucher_value = 0;
@@ -70,9 +72,8 @@ const convert = async ({ el, voucher_discount, currencyAmount, rank, }) => {
         voucher_type = voucher_discount.discount_type;
         voucher_value = voucher_discount.discount_value;
         if (voucher_discount.discount_type === "percentage") {
-            voucher_amount =
-                converted_amount *
-                    (clampMin(toNumberSafe(voucher_discount.discount_value)) / 100);
+            const percent = Math.min(100, clampMin(toNumberSafe(voucher_discount.discount_value)));
+            voucher_amount = amount * (percent / 100);
         }
         else {
             voucher_amount = clampMin(toNumberSafe(voucher_discount.discount_value));
